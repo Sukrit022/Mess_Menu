@@ -1,12 +1,14 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
-
+	"os"
 	"strings"
 )
 
 func main() {
+	reader := bufio.NewReader(os.Stdin)
 
 	var day, meal, item string
 	var count int
@@ -24,11 +26,13 @@ func main() {
 		fmt.Println("Error:", err)
 	}
 
+	
 	fmt.Println("Enter the item(full name):")
-	n, err = fmt.Scanln(&item)
+	item, err = reader.ReadString('\n')
 	if err != nil || n != 1 {
 		fmt.Println("Error:", err)
 	}
+	item = strings.TrimSpace(item)
 
 	menuItems = GetMenuItems(day, meal)
 	count = GetMenuItemscount(day, meal)
